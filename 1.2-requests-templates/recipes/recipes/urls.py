@@ -16,14 +16,11 @@ Including another URLconf
 
 from django.urls import path
 
-from calculator.views import show_recipes
-from calculator.views import get_omlet, get_pasta, get_butter, get_bread
+from calculator.views import get_dishes, show_recipes
+
 
 urlpatterns = [
     # здесь зарегистрируйте вашу view-функцию
     path("", show_recipes, name="home"),
-    path("omlet/", get_omlet, name="omlet"),
-    path("pasta/", get_pasta, name="pasta"),
-    path("butter/", get_butter, name="butter"),
-    path("bread/", get_bread, name="bread"),
+    path("<str:dish>/", get_dishes, name="dish"),
 ]

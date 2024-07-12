@@ -1,23 +1,24 @@
 from django.shortcuts import render, reverse
 
 DATA = {
-    'omlet': {
+    'Омлет': {
         'яйца, шт': 2,
         'молоко, л': 0.1,
         'соль, ч.л.': 0.5,
     },
-    'pasta': {
+    'Макароны': {
         'макароны, г': 0.3,
         'сыр, г': 0.05,
     },
-    'butter': {
+    'Сливочное масло': {
         'хлеб, ломтик': 1,
         'колбаса, ломтик': 1,
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
     # можете добавить свои рецепты ;)
-    "bread": {}
+    "Хлеб": {},
+    "Помидоры": {'помидор, ломтик': 3},
 }
 
 
@@ -34,37 +35,17 @@ def add_servings(dish: str, request):
     portions = int(request.GET.get("servings", 1))
     products = {
         ingredient: amount * portions
-        for (ingredient, amount) in DATA[dish].items()
+        for (ingredient, amount) in DATA.get(dish, {}).items()
     }
     return {"recipe": products, "back": reverse("home")}
 
 
 def show_recipes(request):
-    pages = {
-        "Омлет": reverse("omlet"),
-        "Макароны": reverse("pasta"),
-        "Сливочное масло": reverse("butter"),
-        "Хлеб": reverse("bread"),
-    }
+    pages = {dish: f"/{dish}" for dish in DATA}
     context = {"pages": pages}
     return render(request, "calculator/home.html", context)
 
 
-def get_omlet(request):
-    context = add_servings("omlet", request)
-    return render(request, "calculator/index.html", context)
-
-
-def get_pasta(request):
-    context = add_servings("pasta", request)
-    return render(request, "calculator/index.html", context)
-
-
-def get_butter(request):
-    context = add_servings("butter", request)
-    return render(request, "calculator/index.html", context)
-
-
-def get_bread(request):
-    context = add_servings("bread", request)
+def get_dishes(request, dish):
+    context = add_servings(dish, request)
     return render(request, "calculator/index.html", context)
