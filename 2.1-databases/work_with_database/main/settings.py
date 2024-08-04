@@ -55,7 +55,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': os.environ["DB_PASSWORD"],
+        'PASSWORD': "KiaPostgre1809",
     }
 }
 
