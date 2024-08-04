@@ -3,21 +3,36 @@
 
 {% block title %}Каталог книг{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="header">
-            <h1><a href="/books">Каталог</a></h1>
-        </div>
-        <div class="row">
-            <div class="book col-md-4">
-                <h2>Сияние</h2>
-                <p>Автор: Стивен Кинг</p>
-                <p>Дата публикации: 2018-09-10</p>
-            </div>
-            <div class="book col-md-4">
-                <h2>1984</h2>
-                <p>Автор: Джордж Оруэл</p>
-                <p>Дата публикации: 2015-03-11</p>
-            </div>
-        </div>
+<div class="container">
+  <div class="header">
+    <h1><a href="/books">Каталог</a></h1>
+  </div>
+  <div class="row">
+    {% for book in books %}
+    <div class="book col-md-4">
+      <a href="{% url 'pub_date' book.pub_date %}">
+        <h2>{{ book.name }}</h2>
+      </a>
+      <p>Автор: {{ book.author }}</p>
+      <p>Дата публикации: {{ book.format_date }}</p>
     </div>
+    {% endfor %}
+  </div>
+  <div class="nav" style="margin-top: 70px; margin-left: 500px;">
+    <div class="previous">
+      {% if date_ls %}
+      <a href="{% url 'pub_date' date_ls.format_date %}">
+        {{ date_ls.format_date }}
+      </a>>
+      {% endif %}
+    </div>
+    <div class="next" style="margin-left: 30px;">
+      {% if date_gt %}
+      <a href="{% url 'pub_date' date_gt.format_date %}">
+        {{ date_gt.format_date }}
+      </a>>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}
