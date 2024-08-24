@@ -1,10 +1,8 @@
-from pprint import pprint
-
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
 
-from .models import Article, Scope, Tag
+from .models import Article, Scope
 
 
 class RelationshipInlineFormset(BaseInlineFormSet):
