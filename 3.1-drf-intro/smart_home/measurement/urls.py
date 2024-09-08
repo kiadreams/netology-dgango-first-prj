@@ -1,6 +1,6 @@
 from django.urls import path
 
-from measurement import views
+from . import views
 
 urlpatterns = [
     # TODO: зарегистрируйте необходимые маршруты

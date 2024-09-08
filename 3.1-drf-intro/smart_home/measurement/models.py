@@ -13,3 +13,9 @@ class Measurement(models.Model):
     )
     temperature = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='measurement/photos',
+        max_length=150,
+    )
