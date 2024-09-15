@@ -2,7 +2,7 @@
 
 @baseUrl = http://localhost:8000/api/v1
 
-# создание продукта
+# создание продукта 1
 POST {{baseUrl}}/products/
 Content-Type: application/json
 
@@ -13,14 +13,63 @@ Content-Type: application/json
 
 ###
 
-# получение продуктов
-GET {{baseUrl}}/products/
+# создание продукта 2
+POST {{baseUrl}}/products/
 Content-Type: application/json
+
+{
+  "title": "Огурец",
+  "description": "Лучшие огурцы на складе"
+}
+
+###
+
+# создание продукта 3
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Свекла",
+  "description": "Самая красная свекла на рынке"
+}
+
+###
+
+# создание продукта 4
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Морковь",
+  "description": "Самая сладкая на рынке"
+}
+
+###
+
+# создание продукта 5
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Картошка",
+  "description": "Превосходного качества"
+}
+
+###
+
+# создание продукта 6
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Бананы",
+  "description": "Хорошего качества"
+}
 
 ###
 
 # обновление продукта
-PATCH {{baseUrl}}/products/1/
+PATCH {{baseUrl}}/products/2/
 Content-Type: application/json
 
 {
@@ -35,13 +84,7 @@ Content-Type: application/json
 
 ###
 
-# поиск продуктов по названию и описанию
-GET {{baseUrl}}/products/?search=помидор
-Content-Type: application/json
-
-###
-
-# создание склада
+# создание склада 1
 POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
@@ -63,8 +106,53 @@ Content-Type: application/json
 
 ###
 
+# создание склада 2
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Простенький склад",
+  "positions": [
+    {
+      "product": 2,
+      "quantity": 1250,
+      "price": 110.50
+    },
+    {
+      "product": 4,
+      "quantity": 50,
+      "price": 63.40
+    }
+  ]
+}
+
+###
+
+# создание склада 3
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Популярный склад",
+  "positions": [
+    {
+      "product": 1,
+      "quantity": 5250,
+      "price": 46.50
+    },
+    {
+      "product": 5,
+      "quantity": 150,
+      "price": 63.40
+    }
+  ]
+}
+
+###
+
+
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/4/
+PATCH {{baseUrl}}/stocks/1/
 Content-Type: application/json
 
 {
@@ -76,7 +164,7 @@ Content-Type: application/json
     },
     {
       "product": 3,
-      "quantity": 243,
+      "quantity": 210,
       "price": 145
     }
   ]
@@ -84,6 +172,46 @@ Content-Type: application/json
 
 ###
 
+
+# просмотр всех складов
+GET {{baseUrl}}/stocks/1/
+Content-Type: application/json
+
+###
+
+GET {{baseUrl}}/stocks/
+Content-Type: application/json
+
+###
+
+# поиск продуктов по названию и описанию
+GET {{baseUrl}}/products/?search=Карт
+Content-Type: application/json
+
+###
+
+# получение продуктов
+GET {{baseUrl}}/products/
+Content-Type: application/json
+
+###
+
 # поиск складов, где есть определенный продукт
 GET {{baseUrl}}/stocks/?products=2
 Content-Type: application/json
+
+###
+
+
+# ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ...
+# поиск складов, по наименованию или его части продукта
+GET {{baseUrl}}/stocks/?search=Картошк
+Content-Type: application/json
+
+###
+
+# поиск складов, по описанию продукта
+GET {{baseUrl}}/stocks/?search=Сам
+Content-Type: application/json
+
+###
