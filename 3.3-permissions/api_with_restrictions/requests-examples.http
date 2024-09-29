@@ -90,8 +90,19 @@ Authorization: Token 368f5d388ec5a5bc34fe16b9cd7bbe99583f8a78
 
 ###
 
+# попытка поменять объявление ОТКРЫТЬ ЕГО пльзователь 2(администратор)
+PATCH {{baseUrl}}/advertisements/5/
+Content-Type: application/json
+Authorization: Token 835c6165e64315d46cfffde40dca439c45368178
+
+{
+  "status": "OPEN"
+}
+
+###
+
 # попытка поменять объявление ЗАКРЫТЬ ЕГО пользователь 3(другой пользователь)
-PATCH {{baseUrl}}/advertisements/1/
+PATCH {{baseUrl}}/advertisements/5/
 Content-Type: application/json
 Authorization: Token 20aa57d4b70dcca4dc67559155c0d41748e47138
 
