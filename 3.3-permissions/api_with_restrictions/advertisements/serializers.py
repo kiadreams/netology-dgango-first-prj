@@ -46,7 +46,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
                 creator=self.context.get('request').user,
                 status='OPEN',
             ).count()
-            if count_of_open >= 2:
+            if count_of_open >= 10:
                 raise ValidationError('У Вас уже десять открытых объявлений!')
         # TODO: добавьте требуемую валидацию
         return data
