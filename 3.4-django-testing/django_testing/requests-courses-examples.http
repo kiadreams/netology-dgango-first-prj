@@ -1,0 +1,207 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api/v1
+
+# получение объявлений
+GET {{baseUrl}}/courses/
+Content-Type: application/json
+
+###
+
+# создание курса #1
+POST {{baseUrl}}/courses/
+Content-Type: application/json
+
+{
+  "name": "Вышивка"
+}
+
+###
+
+# создание курса #2
+POST {{baseUrl}}/courses/
+Content-Type: application/json
+
+{
+  "name": "Плавание"
+}
+
+###
+
+# создание курса #3
+POST {{baseUrl}}/courses/
+Content-Type: application/json
+
+{
+  "name": "Ныряние"
+}
+
+###
+
+# создание курса #4
+POST {{baseUrl}}/courses/
+Content-Type: application/json
+
+{
+  "name": "Бег"
+}
+
+###
+
+# фильтрация по курсу
+GET {{baseUrl}}/courses/?id=2
+Content-Type: application/json
+
+###
+
+# фильтрация по названию курса
+GET {{baseUrl}}/courses/?name=Ныряние
+Content-Type: application/json
+
+###
+
+# поменять данные о курсе
+PATCH {{baseUrl}}/courses/2/
+Content-Type: application/json
+
+{
+  "name": "Плавание"
+}
+
+###
+
+# удалить курс №3
+DELETE {{baseUrl}}/courses/3/
+Content-Type: application/json
+
+###
+
+
+
+
+
+
+
+
+
+# создание объявления №2 пользователя 1
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 368f5d388ec5a5bc34fe16b9cd7bbe99583f8a78
+
+{
+  "title": "Тумба IKEA",
+  "description": "Самовывоз"
+}
+
+###
+
+# создание объявления #3 пользователя 1
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 368f5d388ec5a5bc34fe16b9cd7bbe99583f8a78
+
+{
+  "title": "Стол",
+  "description": "Не срочно!"
+}
+
+###
+
+# создание объявления #1 пользователя 3 
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 20aa57d4b70dcca4dc67559155c0d41748e47138
+
+{
+  "title": "Диван",
+  "description": "Очень нужно!"
+}
+
+###
+
+# создание объявления #1 пользователя 2(администрарот) 
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 835c6165e64315d46cfffde40dca439c45368178
+
+{
+  "title": "Туалет",
+  "description": "Хотелось бы!"
+}
+
+###
+
+# попытка поменять объявление ЗАКРЫТЬ ЕГО пользователь 1(создатель)
+PATCH {{baseUrl}}/advertisements/1/
+Content-Type: application/json
+Authorization: Token 368f5d388ec5a5bc34fe16b9cd7bbe99583f8a78
+
+{
+  "status": "CLOSED"
+}
+
+###
+
+# попытка поменять объявление ОТКРЫТЬ ЕГО пльзователь 1(создатель)
+PATCH {{baseUrl}}/advertisements/1/
+Content-Type: application/json
+Authorization: Token 368f5d388ec5a5bc34fe16b9cd7bbe99583f8a78
+
+{
+  "status": "OPEN"
+}
+
+###
+
+# попытка поменять объявление ОТКРЫТЬ ЕГО пльзователь 2(администратор)
+PATCH {{baseUrl}}/advertisements/5/
+Content-Type: application/json
+Authorization: Token 835c6165e64315d46cfffde40dca439c45368178
+
+{
+  "status": "OPEN"
+}
+
+###
+
+# попытка поменять объявление ЗАКРЫТЬ ЕГО пользователь 3(другой пользователь)
+PATCH {{baseUrl}}/advertisements/5/
+Content-Type: application/json
+Authorization: Token 20aa57d4b70dcca4dc67559155c0d41748e47138
+
+{
+  "status": "CLOSED"
+}
+
+###
+
+# попытка поменять объявление ЗАКРЫТЬ ЕГО пользователь 2(администратор)
+PATCH {{baseUrl}}/advertisements/1/
+Content-Type: application/json
+Authorization: Token 835c6165e64315d46cfffde40dca439c45368178
+
+{
+  "status": "CLOSED"
+}
+
+###
+
+# фильтрация по создателю
+GET {{baseUrl}}/advertisements/?creator=1
+Content-Type: application/json
+
+###
+
+# фильтрация по дате
+GET {{baseUrl}}/advertisements/?created_at_before=2024-09-29
+Content-Type: application/json
+
+###
+
+# попытка удалить объявление ЗАКРЫТЬ ЕГО пользователь 3(другой пользователь)
+DELETE {{baseUrl}}/advertisements/3/
+Content-Type: application/json
+Authorization: Token 20aa57d4b70dcca4dc67559155c0d41748e47138
+
+###
